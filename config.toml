@@ -1,100 +1,19 @@
-# 这是 CLIP-L 的文件位置。
-#clip_l = "/content/sd-scripts/models/clip/clip_l.safetensors"
-# 这是 CLIP-G 的文件位置。
-#clip_g = "/content/sd-scripts/models/clip/clip_g.safetensors"
-# 这是 T5XXL 的文件位置。
-#t5xxl = "/content/sd-scripts/models/clip/t5xxl_fp8.safetensors"
-# 这是 SD3.5 Large 的模型文件位置。
-#pretrained_model_name_or_path = "/content/sd-scripts/models/sd3.5_large.safetensors"
-# 放置记录的路径。
-logging_dir = "/content/sd-scripts/logs/lora-train-log"
-# 训练的文件夹。
-train_data_dir = "/content/sd-scripts/train/data"
-# 训练出图的 Prompt 文件位置。
-sample_prompts = "/content/sd-scripts/train/sample/prompt.txt"
-# 训练输出的文件夹。
-output_dir = "/content/sd-scripts/output"
-# 训练的 Lora 名称。
-output_name = "my-sd35-large-lora"
-# 记录方式，你可以使用 wandb 或 tensorboard。
-log_with = "tensorboard"
-# 如果你要用 wandb，请填写 API KEY。
-wandb_api_key = ""
-# 如果你要用 wandb，请填写 RUN NAME。
-wandb_run_name = ""
-# UNET 学习率，使用 2e-4、1e-4、1e-5、5e-6 皆可。
-unet_lr = 2e-4
-# TE 学习率，可以使用 UNET 的一半。
-text_encoder_lr = [ 5e-5, 5e-5, 5e-5]
-# 由于是 SD3.5 Large，如果你的 VRAM 超多，可以加大。
-train_batch_size = 16
-# 因为 Train batch size 1，所以这边使用 4，但会放大整体训练时间。
-gradient_accumulation_steps = 1
-# 我的习惯是使用最大步数训练，如果你想使用 Epoch，请把它改 0。
-max_train_steps = 4000
-# 因为使用最大步数训练，所以维持 1，若你不是，请设定一个 Epoch，例如 10。
-epoch = 1
-# 设定多少 Epochs 储存一次 Lora 结果。
-save_every_n_epochs = 1
-# 设定多少训练步数储存一次 Lora 结果，如果不需要请设定成 0。
-save_every_n_steps = 500
-# 训练 Dim，目前尚未针对这两个数值作更多实验，所以可以先别动它。
-network_dim = 32
-# 训练 Alpha，就使用 Dim 的一半就好。
-network_alpha = 16
-# 分块设定，请把数值设定跟 dim 相同
-context_attn_dim = 32
-context_mlp_dim = 32
-x_attn_dim = 32
-x_mlp_dim = 32
-# 底下如果你不知道你在做什么，请不要更动。
-context_mod_dim = 0
-x_mod_dim = 0
-apply_t5_attn_mask = true
-bucket_no_upscale = true
-bucket_reso_steps = 64
-cache_latents = true
-cache_latents_to_disk = true
-cache_text_encoder_outputs = true
-cache_text_encoder_outputs_to_disk = true
-caption_extension = ".txt"
-clip_skip = 0
-dynamo_backend = "eager"
+[general]
+flip_aug = true
+color_aug = false
+
+[[datasets]]
 enable_bucket = true
-fp8_base = true
-gradient_checkpointing = true
-guidance_scale = 1.0
-highvram = true
-huber_c = 0.1
-huber_schedule = "snr"
-ip_noise_gamma = 0.1
-ip_noise_gamma_random_strength = true
-loss_type = "l2"
-lr_scheduler = "cosine"
-lr_scheduler_args = []
-lr_scheduler_num_cycles = 1
-lr_scheduler_power = 1
-lr_warmup_steps = 200
+resolution = [1024,1024]
+bucket_reso_steps = 64
 max_bucket_reso = 2048
-max_data_loader_n_workers = 4
-max_grad_norm = 0.01
-max_timestep = 1000
-max_token_length = 225
-min_bucket_reso = 256
-mixed_precision = "bf16"
-network_args = ["train_t5xxl=False", "emb_dims=[0,0,0,0,0,0]", "train_block_indices=12-24,30-37"]
-network_module = "networks.lora_sd3"
-noise_offset = 0
-noise_offset_type = "Original"
-optimizer_args = ["weight_decay=0.01", "betas=0.9,0.999", "eps=0.000001",]
-optimizer_type = "AdamW8bit"
-persistent_data_loader_workers = 1
-prior_loss_weight = 1
-resolution = "1024,1024"
-sample_sampler = "euler_a"
-save_model_as = "safetensors"
-save_precision = "fp16"
-save_state_on_train_end = true
-sdpa = true
-seed = 42
-log_config = true
+min_bucket_reso = 128
+bucket_no_upscale = false
+batch_size = 16
+random_crop = false
+shuffle_caption = false
+
+  [[datasets.subsets]]
+  image_dir = "/content/sd-scripts/train/data"
+  num_repeats = 1
+  caption_extension = ".txt"
