@@ -1,9 +1,9 @@
 # 这是 CLIP-L 的文件位置。
-clip_l = "/content/sd-scripts/models/clip/sd3/clip_l.safetensors"
+clip_l = "/content/sd-scripts/models/clip/clip_l.safetensors"
 # 这是 CLIP-G 的文件位置。
-clip_g = "/content/sd-scripts/models/clip/sd3/clip_g.safetensors"
+clip_g = "/content/sd-scripts/models/clip/clip_g.safetensors"
 # 这是 T5XXL 的文件位置。
-t5xxl = "/content/sd-scripts/models/clip/sd3/t5xxl_fp8.safetensors"
+t5xxl = "/content/sd-scripts/models/clip/t5xxl_fp8.safetensors"
 # 这是 SD3.5 Large 的模型文件位置。
 pretrained_model_name_or_path = "/content/sd-scripts/models/sd3.5_large.safetensors"
 # 放置记录的路径。
