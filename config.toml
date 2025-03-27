@@ -9,7 +9,7 @@ bucket_reso_steps = 64
 max_bucket_reso = 2048
 min_bucket_reso = 128
 bucket_no_upscale = false
-batch_size = 16
+batch_size = 4
 random_crop = false
 shuffle_caption = false
 
