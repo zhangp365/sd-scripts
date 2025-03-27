@@ -15,5 +15,5 @@ shuffle_caption = false
 
   [[datasets.subsets]]
   image_dir = "/content/sd-scripts/train/data"
-  num_repeats = 1
+  num_repeats = 10
   caption_extension = ".txt"
