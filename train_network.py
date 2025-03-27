@@ -1823,11 +1823,14 @@ def setup_parser() -> argparse.ArgumentParser:
 
 
 if __name__ == "__main__":
-    parser = setup_parser()
+    try:
+        parser = setup_parser()
 
-    args = parser.parse_args()
-    train_util.verify_command_line_training_args(args)
-    args = train_util.read_config_from_file(args, parser)
+        args = parser.parse_args()
+        train_util.verify_command_line_training_args(args)
+        args = train_util.read_config_from_file(args, parser)
 
-    trainer = NetworkTrainer()
-    trainer.train(args)
+        trainer = NetworkTrainer()
+        trainer.train(args)
+    except Exception as e:
+        logger.exception(e)
