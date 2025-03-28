@@ -1,5 +1,5 @@
 [general]
-flip_aug = true
+flip_aug = false
 color_aug = false
 
 [[datasets]]
